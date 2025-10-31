@@ -21,8 +21,8 @@ source.main = main.py
 # 版本号
 version = 1.0.0
 
-# 依赖的 Python 包
-requirements = python3,kivy,pillow,paddlepaddle-tiny,paddleocr,opencv-python,numpy,pybind11
+# 依赖的 Python 包（简化版，避免构建错误）
+requirements = python3,kivy,pillow,numpy,opencv-python-headless
 
 # Android 权限
 android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET

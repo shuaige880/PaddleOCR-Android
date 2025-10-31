@@ -1,31 +1,12 @@
 # Android 版 PaddleOCR 依赖
+# 简化版本，只包含必需的包
 
 # Kivy 框架（用于构建 Android UI）
 kivy==2.2.1
-Kivy-Garden==0.1.5
 
 # 图像处理
-Pillow==10.1.0
+Pillow>=9.0.0
 
-# PaddleOCR 和相关依赖
-# 注意：Android 上使用 paddlepaddle-tiny 轻量版
-paddlepaddle-tiny==2.5.1
-paddleocr==2.7.0.3
-
-# OpenCV（PaddleOCR 依赖）
-opencv-python==4.8.1.78
-
-# 数值计算
-numpy==1.24.3
-
-# Python 绑定
-pybind11==2.11.1
-
-# 其他工具
-shapely==2.0.2
-scikit-image==0.22.0
-imgaug==0.4.0
-lmdb==1.4.1
-tqdm==4.66.1
-pyyaml==6.0.1
+# Cython（构建需要）
+Cython>=0.29.0
 
