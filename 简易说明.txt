@@ -1,0 +1,198 @@
+╔══════════════════════════════════════════════════════════════╗
+║          PaddleOCR Android 版本 - 简易说明                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+📱 这是什么？
+-----------
+将您的 PaddleOCR 桌面程序转换为 Android 手机应用。
+可以在手机上拍照识别文字，支持中文，准确率 97%+。
+
+🎯 主要功能
+-----------
+✓ 拍照识别文字
+✓ 从相册选择图片识别
+✓ 一键复制识别结果
+✓ 离线使用（首次需联网下载模型）
+✓ 支持 Android 5.0 及以上系统
+
+📁 重要文件
+-----------
+main.py              - Android 应用主程序（Kivy 框架）
+buildozer.spec       - APK 构建配置文件
+requirements.txt     - Python 依赖包列表
+paddle_ocr.py        - 原桌面版程序（保留）
+
+README_Android.md    - 详细说明文档（英文）
+快速开始.md          - 中文快速入门指南
+简易说明.txt         - 本文件
+
+setup_wsl.sh         - WSL 自动配置脚本
+build.sh             - 一键构建脚本
+
+🚀 快速开始（Windows 用户）
+---------------------------
+
+方法一：使用 WSL2（推荐）★★★★★
+
+1. 安装 WSL2：
+   打开 PowerShell（管理员），运行：
+   wsl --install
+   
+   重启电脑
+
+2. 打开 WSL2 终端（从开始菜单搜索"Ubuntu"）
+
+3. 复制项目到 WSL：
+   cp -r /mnt/e/Desktop/ORC ~/PaddleOCR-Android
+   cd ~/PaddleOCR-Android
+
+4. 运行自动配置脚本：
+   chmod +x setup_wsl.sh
+   ./setup_wsl.sh
+   
+   等待完成（约 10-20 分钟）
+
+5. 构建 APK：
+   chmod +x build.sh
+   ./build.sh
+   
+   选择选项 1（首次构建）
+   等待完成（约 30-60 分钟）
+
+6. 获取 APK：
+   APK 文件在 bin 目录下
+   复制到 Windows：
+   cp bin/*.apk /mnt/e/Desktop/
+
+7. 安装到手机：
+   把 APK 文件发送到手机，点击安装
+
+
+方法二：云构建（最简单）★★★★★
+
+如果本地构建太麻烦，可以使用云服务：
+
+1. 将代码上传到 GitHub
+2. 使用 GitHub Actions 自动构建
+3. 下载构建好的 APK
+
+（需要编写 GitHub Actions 配置文件）
+
+
+方法三：虚拟机
+
+1. 安装 VirtualBox
+2. 安装 Ubuntu 20.04 虚拟机
+3. 在虚拟机中按 Linux 步骤操作
+
+🐧 Linux 用户
+--------------
+
+1. 安装依赖：
+   sudo apt install python3-pip git openjdk-11-jdk
+   pip3 install buildozer
+
+2. 配置 Android SDK（需要下载 Android Studio 或 sdkmanager）
+
+3. 构建：
+   chmod +x build.sh
+   ./build.sh
+
+🍎 macOS 用户
+--------------
+
+1. 安装 Homebrew
+2. 安装依赖：
+   brew install python3 git openjdk@11
+   pip3 install buildozer
+
+3. 配置 Android SDK
+
+4. 构建：
+   chmod +x build.sh
+   ./build.sh
+
+⚠️ 注意事项
+-----------
+
+1. 首次构建时间很长（30-60分钟）
+   需要下载很多依赖包（约 1-2GB）
+   请保持网络稳定，耐心等待
+
+2. Windows 用户必须使用 WSL2 或 Linux 虚拟机
+   Buildozer 不支持原生 Windows
+
+3. 需要的磁盘空间：至少 10GB
+
+4. 如果构建失败，运行：
+   buildozer android clean
+   rm -rf .buildozer
+   再重新构建
+
+📱 安装到手机
+-------------
+
+方式一：USB 连接
+1. 手机开启 USB 调试
+2. 连接电脑
+3. 运行: adb install bin/paddleocr-*.apk
+
+方式二：直接安装
+1. 将 APK 文件发送到手机
+2. 在手机上点击 APK 文件
+3. 允许安装未知来源应用
+4. 安装完成
+
+方式三：一键部署
+运行: buildozer android deploy run
+
+🔧 常见问题
+-----------
+
+Q: 构建失败？
+A: 清理缓存后重试：
+   buildozer android clean
+   rm -rf .buildozer
+   buildozer android debug
+
+Q: 找不到 Android SDK？
+A: 需要下载 Android Studio 或 Android Command Line Tools
+   并设置 ANDROID_HOME 环境变量
+
+Q: 应用闪退？
+A: 查看日志：
+   buildozer android logcat | grep python
+
+Q: PaddleOCR 模型下载慢？
+A: 首次运行需要下载模型（约 20MB）
+   请连接 WiFi，耐心等待
+
+Q: 识别速度慢？
+A: 已使用轻量级模型，如果还慢可能是手机性能限制
+   建议使用较新的手机
+
+📞 获取帮助
+-----------
+
+详细文档：查看 README_Android.md 和 快速开始.md
+
+在线资源：
+- Kivy 官网: https://kivy.org
+- Buildozer 文档: https://buildozer.readthedocs.io
+- PaddleOCR: https://github.com/PaddlePaddle/PaddleOCR
+
+🎉 构建成功后
+-------------
+
+您将得到一个 APK 文件：
+bin/paddleocr-1.0.0-arm64-v8a-debug.apk
+
+可以：
+✓ 安装到自己的手机使用
+✓ 分享给朋友
+✓ 发布到应用商店（需要签名）
+
+祝您使用愉快！
+
+═══════════════════════════════════════════════════════════════
+
